@@ -48,6 +48,9 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
 
         // ps:当前这行代码，如需手动调用，如果不写channelGroup会执行调用移除操作
         channelGroup.remove(channel);
+
+        // 当前连接数量
+        System.out.println(channelGroup.size());
     }
 
     @Override
