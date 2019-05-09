@@ -57,30 +57,35 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        // 连接处于活动状态
         System.out.println("channel active");
         super.channelActive(ctx);
     }
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+        // 连接建立
         System.out.println("handler added");
         super.handlerAdded(ctx);
     }
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        // 连接注册
         System.out.println("channel Registered");
         super.channelRegistered(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        // 连接不活跃
         System.out.println("channel Inactive");
         super.channelInactive(ctx);
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        // 连接未注册
         System.out.println("channel Unregistered");
         super.channelUnregistered(ctx);
     }
