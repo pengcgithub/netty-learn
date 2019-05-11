@@ -25,7 +25,8 @@ public class MyChatClientInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-        pipeline.addLast(new MyChatServerHandler());
+
+        pipeline.addLast(new MyChatClientHandler());
     }
 
 }
