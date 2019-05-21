@@ -1,4 +1,5 @@
 namespace java thrift.generated
+namespace py py.thrift.generated
 
 typedef i16 short
 typedef i32 int
@@ -25,5 +26,7 @@ service PersonService {
 }
 
 // thrift --gen java src/thrift/data.thrift
+// thrift --gen py src/thrift/data.thrift
+// https://github.com/ganxinming/nettyTest
 
 
