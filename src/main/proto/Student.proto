@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.tracy.proto;
+
+option java_multiple_files = true;
+option java_package = "com.tracy.proto";
+option java_outer_classname = "StudentProto";
+option objc_class_prefix = "HLW";
+
+service Greeter {
+    rpc getStudentName (StudentRequest) returns (StudentResponse) {}
+}
+
+message StudentRequest {
+    string name = 1;
+}
+
+message StudentResponse {
+    string message = 1;
+}
