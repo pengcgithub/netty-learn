@@ -7,8 +7,16 @@ option java_package = "com.tracy.proto";
 option java_outer_classname = "StudentProto";
 option objc_class_prefix = "HLW";
 
-service Greeter {
+service StudentService {
     rpc getStudentName (StudentRequest) returns (StudentResponse) {}
+}
+
+message MyRequest {
+    string name = 1;
+}
+
+message MyResponse {
+    string realName = 1;
 }
 
 message StudentRequest {
