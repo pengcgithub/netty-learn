@@ -17,18 +17,18 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
  * @package com.tracy.netty.sixth
  * @time 2019/5/18 17:02
  */
-public class TestClientInitializer extends ChannelInitializer<SocketChannel> {
-
-    @Override
-    protected void initChannel(SocketChannel ch) throws Exception {
-        ChannelPipeline pipeline = ch.pipeline();
-
-        pipeline.addLast(new ProtobufVarint32FrameDecoder());
-        pipeline.addLast(new ProtobufDecoder(DataInfo.MyMessage.getDefaultInstance()));
-        pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
-        pipeline.addLast(new ProtobufEncoder());
-
-        pipeline.addLast(new TestClientHandler());
-    }
-
-}
+//public class TestClientInitializer extends ChannelInitializer<SocketChannel> {
+//
+//    @Override
+//    protected void initChannel(SocketChannel ch) throws Exception {
+//        ChannelPipeline pipeline = ch.pipeline();
+//
+//        pipeline.addLast(new ProtobufVarint32FrameDecoder());
+//        pipeline.addLast(new ProtobufDecoder(DataInfo.MyMessage.getDefaultInstance()));
+//        pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
+//        pipeline.addLast(new ProtobufEncoder());
+//
+//        pipeline.addLast(new TestClientHandler());
+//    }
+//
+//}

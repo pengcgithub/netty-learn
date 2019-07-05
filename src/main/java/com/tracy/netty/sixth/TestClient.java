@@ -15,24 +15,24 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @package com.tracy.netty.sixth
  * @time 2019/5/18 16:50
  */
-public class TestClient {
-
-    public static void main(String args[]) throws Exception {
-        // 获取连接
-        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
-
-        try {
-            Bootstrap bootstrap = new Bootstrap();
-            bootstrap.group(eventLoopGroup).channel(NioSocketChannel.class).
-                    handler(new TestClientInitializer());
-
-            ChannelFuture channelFuture = bootstrap.connect("localhost", 8899).sync();
-            channelFuture.channel().closeFuture().sync();
-        } finally {
-            eventLoopGroup.shutdownGracefully();
-        }
-
-
-    }
-
-}
+//public class TestClient {
+//
+//    public static void main(String args[]) throws Exception {
+//        // 获取连接
+//        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+//
+//        try {
+//            Bootstrap bootstrap = new Bootstrap();
+//            bootstrap.group(eventLoopGroup).channel(NioSocketChannel.class).
+//                    handler(new TestClientInitializer());
+//
+//            ChannelFuture channelFuture = bootstrap.connect("localhost", 8899).sync();
+//            channelFuture.channel().closeFuture().sync();
+//        } finally {
+//            eventLoopGroup.shutdownGracefully();
+//        }
+//
+//
+//    }
+//
+//}
