@@ -8,7 +8,20 @@ option java_outer_classname = "StudentProto";
 option objc_class_prefix = "HLW";
 
 service StudentService {
+
+    //GPRC 四种接口定义的格式
+
+    // 传递对象，返回对象
     rpc getStudentName (StudentRequest) returns (StudentResponse) {}
+
+    // 传递对象，返回stream对象
+    rpc getStudentByName(StudentRequest) returns (stream StudentResponse) {}
+
+    // 传递stream对象，返回对象集合
+    rpc getStudentWrapperByName(stream StudentRequest) returns (StudentResponseList) {}
+
+    // 传递stream对象，返回stream对象
+    rpc biTalk(stream StudentRequest) returns (stream StudentResponse) {}
 }
 
 message MyRequest {
@@ -25,4 +38,8 @@ message StudentRequest {
 
 message StudentResponse {
     string message = 1;
+}
+
+message StudentResponseList {
+    repeated StudentResponse studentResponse = 1;
 }
