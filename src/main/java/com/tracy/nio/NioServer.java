@@ -3,10 +3,16 @@ package com.tracy.nio;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * <br/>
@@ -18,6 +24,8 @@ import java.util.Set;
  * @time 2019/7/24 17:42
  */
 public class NioServer {
+
+    private static Map<String, SocketChannel> clientMap = new HashMap<>();
 
     public static void main(String args[]) throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
@@ -43,9 +51,34 @@ public class NioServer {
 
                 // 遍历集合
                 selectionKeys.forEach(selectionKey -> {
+                    final SocketChannel client;
+
                     try {
                         if (selectionKey.isAcceptable()) {
                             ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();
+                            client = server.accept();
+                            client.configureBlocking(false);
+                            client.register(selector, SelectionKey.OP_READ);
+
+                            String key = "[" + UUID.randomUUID().toString() + "]";
+
+                            clientMap.put(key, client);
+
+                        } else if (selectionKey.isReadable()) {
+                            client = (SocketChannel) selectionKey.channel();
+
+                            ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+
+                            int count = client.read(readBuffer);
+
+                            if (count > 0) {
+                                readBuffer.flip();
+
+                                Charset charset = Charset.forName("utf-8");
+                                String receiveMessage = String.valueOf(charset.decode(readBuffer).array());
+
+                                System.out.println(client + " : " + receiveMessage);
+                            }
 
                         }
 
@@ -54,6 +87,7 @@ public class NioServer {
                     }
                 });
 
+                selectionKeys.clear();
 
             } catch (Exception ex) {
                 ex.printStackTrace();
