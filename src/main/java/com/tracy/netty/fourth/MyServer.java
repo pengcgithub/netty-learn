@@ -26,7 +26,9 @@ public class MyServer {
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workGroup).channel(NioServerSocketChannel.class)
+                    // 专门用于处理连接本身，处理bossGroup
                     .handler(new LoggingHandler(LogLevel.INFO))
+                    // 处理用于处理workGroup
                     .childHandler(new MyServerInitializer());
 
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();

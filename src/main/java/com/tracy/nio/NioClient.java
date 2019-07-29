@@ -32,7 +32,7 @@ public class NioClient {
 
             Selector selector = Selector.open();
             socketChannel.register(selector, SelectionKey.OP_CONNECT);
-            socketChannel.connect(new InetSocketAddress("127.0.0.7", 8899));
+            socketChannel.connect(new InetSocketAddress("127.0.0.1", 8899));
 
             while (true) {
                 // 阻塞
