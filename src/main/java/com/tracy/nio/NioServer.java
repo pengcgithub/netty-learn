@@ -36,8 +36,9 @@ public class NioServer {
         // 绑定到8899端口号
         serverSocket.bind(new InetSocketAddress(8899));
 
+        // 打开一个selector
         Selector selector = Selector.open();
-        // 事件，将channel对象分别注册到selector选择器上
+        // 事件，将channel对象分别注册到selector选择器上（表示对哪件事情感兴趣）
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         // 事件处理
@@ -54,10 +55,12 @@ public class NioServer {
                     final SocketChannel client;
 
                     try {
+                        // 表示有客服端需要连接上来
                         if (selectionKey.isAcceptable()) {
                             ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();
                             client = server.accept();
                             client.configureBlocking(false);
+                            // 监听这个连接的read事件
                             client.register(selector, SelectionKey.OP_READ);
 
                             String key = "[" + UUID.randomUUID().toString() + "]";

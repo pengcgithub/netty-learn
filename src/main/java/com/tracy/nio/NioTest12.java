@@ -15,11 +15,11 @@ import java.util.Set;
  *
  * @author pengc
  * @version v3.1.0
- * @title NioTest112
+ * @title NioTest12
  * @package com.tracy.nio
  * @time 2019/7/23 10:08
  */
-public class NioTest112 {
+public class NioTest12 {
 
     public static void main(String args[]) throws Exception {
 
